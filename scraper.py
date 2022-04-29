@@ -5,7 +5,8 @@ from textwrap import indent
 from os import sep
 from bs4 import BeautifulSoup
 
-url = "https://www.ceneo.pl/91714422#tab=reviews"
+item_id = input("Enter item id: ")
+url = "https://www.ceneo.pl/" + item_id + "#tab=reviews"
 all_opinions = []
 while(url):
     response = requests.get(url)
@@ -52,8 +53,8 @@ while(url):
     except TypeError:
         url = None
 
-with open("opinions/91714422.json", "w", encoding="UTF-8") as jf:
+with open("opinions/" + item_id + ".json", "w", encoding="UTF-8") as jf:
     json.dump(all_opinions, jf, indent=4, ensure_ascii=False)
 
 
-    
+    # Zadanie domowe - wpisywanie przez użytkownika id przedmiotu
